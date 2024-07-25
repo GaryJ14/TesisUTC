@@ -19,6 +19,6 @@ class Usuario(models.Model):
     #estado = models.CharField(max_length=10, choices=[('activo', 'Activo'), ('inactivo', 'Inactivo')], default='activo')
 
     #def __str__(self):
-     #   fila = "{0}: Usuario ID {1} - Estado: {2}"
+     #   fila = "{0}: Usuario ID {1} - Estado: {2}
       #  return fila.format(self.cuentaId, self.usuarioId, self.estado)
     
