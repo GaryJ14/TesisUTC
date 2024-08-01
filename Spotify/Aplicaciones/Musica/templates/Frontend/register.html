@@ -18,7 +18,7 @@
                         <h3>Unete al mejor servicio de musica</h3>
                         <!-- Register Form -->
                         <div class="login-form">
-                            <form action="{% url 'guardarRegistro' %}" method="post">
+                            <form id="registerForm" action="{% url 'guardarRegistro' %}" method="post">
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <label for="exampleInputName">Nombre</label>
@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputConfirmPassword">Confirmar Contraseña</label>
-                                    <input type="password" class="form-control" id="exampleInputConfirmPassword" placeholder="Confirmar Contraseña">
+                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmar Contraseña">
                                 </div>
                                 <button type="submit" class="btn oneMusic-btn mt-30">Registrarse</button>
                                 <p class="mt-15">¿Ya tienes una cuenta? <a href="{% url 'login'%}">Inicia sesión aquí</a></p>
@@ -47,4 +47,5 @@
         </div>
     </section>
     <!-- ##### Register Area End ##### -->
-    {%endblock%}
+    <script src="{% static 'js/validation.js' %}"></script>
+{%endblock%}

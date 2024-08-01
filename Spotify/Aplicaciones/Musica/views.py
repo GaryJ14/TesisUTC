@@ -25,3 +25,20 @@ def guardarRegistro(request):
 def albums(request):
     return render(request,"Frontend/albums.html")
 
+def login_view(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+        
+        try:
+            user = Registro.objects.get(email=email)
+            if user.password == password:
+                # Aquí podrías manejar la lógica de iniciar sesión correctamente
+                messages.success(request, 'Inicio de sesión exitoso')
+                return redirect('home')  # Redirige a la página principal u otra página
+            else:
+                messages.error(request, 'Contraseña incorrecta')
+        except Registro.DoesNotExist:
+            messages.error(request, 'El correo electrónico no está registrado')
+
+    return render(request, 'Frontend/login.html')

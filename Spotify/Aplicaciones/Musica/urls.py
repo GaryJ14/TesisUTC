@@ -9,4 +9,5 @@ urlpatterns=[
     path('guardarRegistro/', views.guardarRegistro,name='guardarRegistro'),
 
     path('albums', views.albums,name='albums'),
+    path('login', views.login_view, name='login'),
 ]
