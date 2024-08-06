@@ -1,0 +1,73 @@
+{% extends "./plantilla.html" %}
+{% load static %}
+{% block body %}
+<!-- ##### Breadcumb Area Start ##### -->
+<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
+    <div class="bradcumbContent">
+        <p>ECO-MUSIC</p>
+        <h2>Eventos</h2>
+    </div>
+</section>
+
+<!-- ##### Events Area Start ##### -->
+<section class="events-area section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading text-center">
+                    <h2>Próximos Eventos</h2>
+                    <p>¡No te pierdas los eventos más emocionantes de la música!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Event List -->
+        <div class="row">
+            <!-- Event Item -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="event-item">
+                    <img src="{% static 'img/event1.jpg' %}" alt="Evento 1" class="img-fluid">
+                    <div class="event-content">
+                        <h4>Concierto de Rock</h4>
+                        <p><i class="fa fa-calendar"></i> 15 de Agosto, 2024</p>
+                        <p><i class="fa fa-map-marker"></i> Auditorio Principal</p>
+                        <p>¡Únete a nosotros para una noche llena de energía con las mejores bandas de rock!</p>
+                        <a href="" class="btn oneMusic-btn">Más Información</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Item -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="event-item">
+                    <img src="{% static 'img/event2.jpg' %}" alt="Evento 2" class="img-fluid">
+                    <div class="event-content">
+                        <h4>Festival de Jazz</h4>
+                        <p><i class="fa fa-calendar"></i> 22 de Agosto, 2024</p>
+                        <p><i class="fa fa-map-marker"></i> Centro Cultural</p>
+                        <p>Disfruta de un día completo con los mejores artistas de jazz en un ambiente único.</p>
+                        <a href="" class="btn oneMusic-btn">Más Información</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Item -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="event-item">
+                    <img src="{% static 'img/event3.jpg' %}" alt="Evento 3" class="img-fluid">
+                    <div class="event-content">
+                        <h4>Concierto de Música Electrónica</h4>
+                        <p><i class="fa fa-calendar"></i> 30 de Agosto, 2024</p>
+                        <p><i class="fa fa-map-marker"></i> Club Eléctrico</p>
+                        <p>Vive una noche inolvidable con los DJs más famosos en el Club Eléctrico.</p>
+                        <a href="" class="btn oneMusic-btn">Más Información</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- ##### Events Area End ##### -->
+
+{% endblock %}
