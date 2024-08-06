@@ -12,7 +12,6 @@ urlpatterns=[
     path('guardarRegistro/', views.guardarRegistro,name='guardarRegistro'),
 
     path('albums', views.albums,name='albums'),
-    path('login', views.login_view, name='login'),
     path('events', views.events, name='events'),
     path('contact', views.contact, name='contact'),
 

@@ -1,4 +1,4 @@
-{% extends "./plantillas.html" %}
+{% extends "./plantilla.html" %}
 {% load static %}
 {% block body %}
 
@@ -17,19 +17,19 @@
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
                 <div class="login-content">
-                    <h3>Bienvenido De nuevo</h3>
+                    <h3>Bienvenido de nuevo</h3>
                     <!-- Login Form -->
                     <div class="login-form">
                         <form action="{% url 'login' %}" method="post">
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="email">Correo electrónico</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Introduce tu correo electrónico">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Introduce tu correo electrónico" required>
                                 <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>No compartiremos tu correo electrónico con nadie más.</small>
                             </div>
                             <div class="form-group">
                                 <label for="password">Contraseña</label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Introduce tu contraseña">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Introduce tu contraseña" required>
                             </div>
                             <button type="submit" class="btn oneMusic-btn mt-30">Iniciar Sesión</button>
                             <a href="{% url 'register' %}" class="btn oneMusic-btn mt-30">Registrarse</a>
@@ -47,5 +47,6 @@
         </div>
     </div>
 </section>
+
 <!-- ##### Login Area End ##### -->
 {% endblock %}

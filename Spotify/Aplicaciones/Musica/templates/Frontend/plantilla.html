@@ -178,6 +178,35 @@
   <script src="{% static 'plantilla/one-music/js/plugins/plugins.js'%}"></script>
   <!-- Active js -->
   <script src="{% static 'plantilla/one-music/js/active.js'%}"></script>
+
+   <!--Aplicar Jinja2 para visualizacion de la Alerta -->
+
+    <!--Si existe mensajes te ejecuta eso caso contrario no -->
+    {% if messages %}
+        {% for mensaje in messages %}
+            {% if mensaje.tags == 'success' %}
+                <script>
+                    Swal.fire({
+                        title: "CONFIRMACION",
+                        //Para reutilizar el mensaje que vayamos a poner
+                        text: "{{mensaje}}",
+                        icon: "success"
+                    });
+                </script>
+
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    <style>
+        label.error{
+            color:red;
+        }
+        /*Borde en rojo*/
+        .form-control.error{
+            border: 2px solid red;
+        }
+    </style>
+
 </body>
 
 </html>
