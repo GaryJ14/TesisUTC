@@ -1,4 +1,4 @@
-{% extends "./plantilla.html" %}
+{% extends "./plantillas.html" %}
 {% load static %}
 {%block body%}
     
@@ -74,7 +74,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="usuarioForm" method="post">
+                    <form id="usuarioForm" name="usuarioForm" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="id" id="id">
                         <div class="mb-3">
@@ -107,9 +107,9 @@
             document.getElementById('nombre').value = nombre;
             document.getElementById('email').value = email;
             document.getElementById('password').value = password;
-            document.getElementById('confirmPassword').value = confirm_password;
+            document.getElementById('confirmPassword').value = confirmPassword;
             document.getElementById('usuarioModalLabel').innerText = 'Editar Usuario';
-            document.getElementById('usuarioForm').action = "".replace('0', id);
+            document.getElementById('usuarioForm').action = "{% url 'procesarActualizacionUsuario' %}".replace('0', id);
         }
 
         
@@ -119,7 +119,6 @@
             document.getElementById('email').value = '';
             document.getElementById('password').value = '';
             document.getElementById('confirmPassword').value = '';
-            document.getElementById('usuarioModalLabel').innerText = 'Nuevo Usuario';
             document.getElementById('usuarioForm').action = "{% url 'guardarUsuario' %}";
         });
     </script>
@@ -167,6 +166,10 @@
                 }
             });
         });
+    </script>
+    
+    <script>
+        let table = new DataTable('#tbl-usuarios');
     </script>
 </div>
 

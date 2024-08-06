@@ -68,7 +68,7 @@
                         </td>
                         <td>
                             <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#musicaModal" onclick="editMusica({{ musica.id }}, '{{ musica.Titulo }}', '{{ musica.Artista }}', '{{ musica.Album }}', '{{ musica.Genero }}')">Editar</button>
-                            <a href="" onclick="return confirm('¿Estás seguro?');" class="btn btn-danger">Eliminar</a>
+                            <a href="{% url 'eliminarMusic' musica.id %}" onclick="return confirm('¿Estás seguro?');" class="btn btn-danger">Eliminar</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -124,7 +124,7 @@
                 document.getElementById('Album').value = Album;
                 document.getElementById('Genero').value = Genero;
                 document.getElementById('musicaModalLabel').innerText = 'Editar Música';
-                document.getElementById('musicaForm').action = "".replace('0', id);
+                document.getElementById('musicaForm').action = "{% url 'procesarActualizacionMusica' %}".replace('0', id);
             }
 
             document.getElementById('musicaModal').addEventListener('hidden.bs.modal', function () {
@@ -134,7 +134,7 @@
                 document.getElementById('Album').value = '';
                 document.getElementById('Genero').value = '';
                 document.getElementById('musicaModalLabel').innerText = 'Nueva Música';
-                document.getElementById('musicaForm').action = "";
+                document.getElementById('musicaForm').action = "{% url 'guardarMusic' %}";
             });
         </script>
 

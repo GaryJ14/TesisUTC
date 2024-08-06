@@ -71,9 +71,57 @@ def guardarUsuario(request):
     messages.success(request, "Usuario registrado exitosamente")
     return redirect('ListadoUsuarios')
 
+def procesarActualizacionUsuario(request):
+    id=request.POST['id']
+    nombre=request.POST['nombre']
+    email=request.POST['email']
+    password=request.POST['password']
+    confirmPassword=request.POST['confirmPassword']
+    UsuarioConsultado=Registro.objects.get(id=id)
+    UsuarioConsultado.nombre=nombre
+    UsuarioConsultado.email=email
+    UsuarioConsultado.password=password
+    UsuarioConsultado.confirmPassword=confirmPassword
+    UsuarioConsultado.save()
+    messages.success(request, 'Usuario actualizado exitosamente.')
+    return redirect('ListadoUsuarios')
 
 #----------------------------------------------------------Music----------------------------------------------------------
 
 def ListadoMusic(request):
     musicas = Music.objects.all()
     return render(request, 'Backend/ListadoMusic.html', {'musicas': musicas})
+def guardarMusic(request):
+    id=request.POST['id']
+    Titulo=request.POST['Titulo']
+    Artista=request.POST['Artista']
+    Album=request.POST['Album']
+    Genero=request.POST['Genero']
+    Audio=request.FILES.get('Audio')
+    
+    nuevoRegistro=Registro.objects.create(id=id,Titulo=Titulo,Artista=Artista,Album=Album,Genero=Genero,Audio=Audio)
+    messages.success(request, "Musica registrada exitosamente")
+    return redirect('Backend/ListadoMusic.html')
+
+def eliminarMusic (request,id):
+    musicaEliminar=Music.objects.get(id=id)
+    musicaEliminar.delete()
+    messages.success(request, "Musica eliminada Correctamente")
+    return redirect('ListadoMusic')
+
+def procesarActualizacionMusica(request):
+    id=request.POST['id']
+    Titulo=request.POST['Titulo']
+    Artista=request.POST['Artista']
+    Album=request.POST['Album']
+    Genero=request.POST['Genero']
+    Audio=request.FILES.get('Audio')
+    MusicaConsultada=Music.objects.get(id=id)
+    MusicaConsultada.Titulo=Titulo
+    MusicaConsultada.Artista=Artista
+    MusicaConsultada.Album=Album
+    MusicaConsultada.Genero=Genero
+    MusicaConsultada.Audio=Audio
+    MusicaConsultada.save()
+    messages.success(request, 'Musica actualizado exitosamente.')
+    return redirect('ListadoMusic')

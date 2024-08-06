@@ -20,9 +20,14 @@ urlpatterns=[
     path('ListadoUsuarios', views.ListadoUsuarios, name='ListadoUsuarios'),
     path('eliminarUsuario/<id>', views.eliminarUsuario,name='eliminarUsuario'),
     path('guardarUsuario/', views.guardarUsuario,name='guardarUsuario'),
+    path('procesarActualizacionUsuario/', views.procesarActualizacionUsuario,name='procesarActualizacionUsuario'),
+
 
     #Musica
     path('ListadoMusic/', views.ListadoMusic, name='ListadoMusic'),
+    path('eliminarMusic/<id>', views.eliminarMusic,name='eliminarMusic'),
+    path('guardarMusic/', views.guardarMusic,name='guardarMusic'),
+    path('procesarActualizacionMusica/', views.procesarActualizacionMusica,name='procesarActualizacionMusica'),
 
     
     
