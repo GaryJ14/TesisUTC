@@ -80,36 +80,7 @@
                                 <ul>
                                     <li><a href="/">Inicio</a></li>
                                     <li><a href="{% url 'albums'%}">Albums</a></li>
-                                    <li><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="/">Inicio</a></li>
-                                            <li><a href="{% url 'albums'%}">Albums</a></li>
-                                            <li><a href="{% url 'events'%}">Events</a></li>
-                                            <li><a href="blog.html">Nuevo</a></li>
-                                            <li><a href="{% url 'contact'%}">Contacto</a></li>
-                                            <li><a href="elements.html">Elements</a></li>
-                                            <li><a href="{% url 'login'%}">Login</a></li>
-                                            <li><a href="#">Dropdown</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                    <li><a href="#">Even Dropdown</a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                            <li><a href="#">Deeply Dropdown</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Even Dropdown</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
                                     <li><a href="{% url 'events'%}">Eventos</a></li>
-                                    <li><a href="blog.html">Exitos</a></li>
                                     <li><a href="{% url 'contact'%}">Contactos</a></li>
                                 </ul>
 
@@ -154,11 +125,10 @@
               <div class="col-12 col-md-6">
                   <div class="footer-nav">
                       <ul>
-                          <li><a href="#">Home</a></li>
-                          <li><a href="#">Albums</a></li>
-                          <li><a href="#">Events</a></li>
-                          <li><a href="#">News</a></li>
-                          <li><a href="#">Contact</a></li>
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="{% url 'albums'%}">Albums</a></li>
+                        <li><a href="{% url 'events'%}">Eventos</a></li>
+                        <li><a href="{% url 'contact'%}">Contactos</a></li>
                       </ul>
                   </div>
               </div>
