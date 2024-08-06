@@ -45,3 +45,7 @@ def login_view(request):
             messages.error(request, 'El correo electrónico no está registrado')
 
     return render(request, 'Frontend/login.html')
+
+def ListadoUsuarios(request):
+
+    return render(request, 'Backend/ListadoUsuarios.html')

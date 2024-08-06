@@ -1,0 +1,24 @@
+{% extends "./plantilla.html" %}
+{% load static %}
+{%block body%}
+    
+    <!-- ##### Hero Area Start ##### -->
+    <section class="hero-area">
+        <div class="hero-slides owl-carousel">
+            <!-- Single Hero Slide -->
+            <div class="single-hero-slide d-flex align-items-center justify-content-center">
+                <!-- Slide Img -->
+                <div class="slide-img bg-img" style="background-image: url({% static 'img/Musica.jpg'%});"></div>
+                <!-- Slide Content -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="hero-slides-content text-center">
+                                <h6 data-animation="fadeInUp" data-delay="100ms">REPRODUCTOR</h6>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">ECO-MUSIC <span>ECO-MUSIC</span></h2>
+                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">INICIAR SESION <i class="fa fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
