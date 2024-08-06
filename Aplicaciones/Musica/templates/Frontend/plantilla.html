@@ -1,4 +1,4 @@
-{% load static %}
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,6 +36,24 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{% static 'plantilla/one-music/style.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .account-btn {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .account-btn p {
+            margin: 0;
+            font-size: 16px;
+            color: #white;
+        }
+        
+        .account-btn .icon-user {
+            margin-right: 8px;
+        }
+    </style>
 
 </head>
 
@@ -91,9 +109,9 @@
                                         <a href="{% url 'login'%}" id="loginBtn">Iniciar Sesion / Registrar</a>
                                     </div>
 
-                                    <!-- Cart Button -->
-                                    <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
+                                    <!-- Account Button -->
+                                    <div class="account-btn">
+                                        <a href="{% url 'loginAdmin' %}"><span class="fas fa-user"></span> ADMIN</a>
                                     </div>
                                 </div>
                             </div>
@@ -107,6 +125,9 @@
     </header>
     <!-- ##### Header Area End ##### -->
     {% block body %}
+
+
+
     {% endblock %}
      <!-- ##### Footer Area Start ##### -->
      <footer class="footer-area">
