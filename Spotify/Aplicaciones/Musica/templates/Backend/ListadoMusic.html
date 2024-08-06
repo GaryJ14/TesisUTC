@@ -1,4 +1,4 @@
-{% extends "./plantilla.html" %}
+{% extends "./plantillas.html" %}
 {% load static %}
 {% block body %}
     
@@ -67,8 +67,14 @@
                             {% endif %}
                         </td>
                         <td>
-                            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#musicaModal" onclick="editMusica({{ musica.id }}, '{{ musica.Titulo }}', '{{ musica.Artista }}', '{{ musica.Album }}', '{{ musica.Genero }}')">Editar</button>
-                            <a href="{% url 'eliminarMusic' musica.id %}" onclick="return confirm('¿Estás seguro?');" class="btn btn-danger">Eliminar</a>
+                            <a href="" type="button" data-bs-toggle="modal" data-bs-target="#musicaModal" onclick="editMusica({{ musica.id }}, '{{ musica.Titulo }}', '{{ musica.Artista }}', '{{ musica.Album }}', '{{ musica.Genero }}')"
+                            title="Editar Cine">
+                            <i class="fas fa-pencil"></i>
+                            </a>
+                            <a href="{% url 'eliminarMusic' musica.id %}" onclick="return confirm('¿Estás seguro?');" class="btn btn-outline-danger btn-circle">
+                                <i class="fas fa-trash"> </i>
+                            </a>
+
                         </td>
                     </tr>
                 {% endfor %}

@@ -1,7 +1,7 @@
 {% extends "./plantillas.html" %}
 {% load static %}
 {%block body%}
-    
+<div class="card">
     <!-- ##### Hero Area Start ##### -->
     <section class="hero-area">
         <div class="hero-slides owl-carousel">
@@ -56,8 +56,16 @@
                     <td>{{ usuario.password }}</td>
                     <td>{{ usuario.confirmPassword }}</td>
                     <td>
-                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#usuarioModal" onclick="editUsuario({{ usuario.id }}, '{{ usuario.nombre }}', '{{ usuario.email }}', '{{ usuario.password }}', '{{ usuario.confirmPassword }}')">Editar</button>
-                        <a href="{% url 'eliminarUsuario' usuario.id %}" onclick="return confirm('¿Estás seguro?');" class="btn btn-danger">Eliminar</a>
+                        <a href="" type="button" class="btn btn-outline-warning btn-circle" data-bs-toggle="modal" data-bs-target="#usuarioModal" onclick="editUsuario({{ usuario.id }}, '{{ usuario.nombre }}', '{{ usuario.email }}', '{{ usuario.password }}', '{{ usuario.confirmPassword }}')"
+                            title="Editar Cine">
+                            <i class="fas fa-pencil"></i>
+                        </a>
+                        <a href="{% url 'eliminarUsuario' usuario.id %}" onclick="return confirm('¿Estás seguro?');" class="btn btn-outline-danger btn-circle">
+                            <i class="fas fa-trash"> </i>
+                        </a>
+
+
+
                     </td>
                 </tr>
             {% endfor %}
