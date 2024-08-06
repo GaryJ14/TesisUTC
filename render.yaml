@@ -1,0 +1,26 @@
+databases:
+  - name: servidorIsma
+    plan: free
+    databaseName: dbtesis
+    user: isma
+
+services:
+  - type: web
+    plan: free
+    name: cineUTC
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn cineUTC.asgi:application -k uvicorn.workers.UvicornWorker"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: servidorIsma
+          property: externalConnectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALLOWED_HOSTS
+        value: cineutc-wt2d.onrender.com
+
+
+
+# set DATABASE_URL=postgresql://isma:gGzmuPP2aCY469LweKKj5GSv5G5VQFYM@dpg-cqlpned6l47c73fj9djg-a.oregon-postgres.render.com/dbcine_2a9q
