@@ -28,6 +28,10 @@ def albums(request):
 def events(request):
     return render(request,"Frontend/events.html")
 
+
+def contact(request):
+    return render(request,"Frontend/contact.html")
+
 def login_view(request):
     if request.method == 'POST':
         email = request.POST['email']

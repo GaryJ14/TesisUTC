@@ -11,5 +11,9 @@ urlpatterns=[
     path('albums', views.albums,name='albums'),
     path('login', views.login_view, name='login'),
     path('events', views.events, name='events'),
+<<<<<<< HEAD
     path('ListadoUsuarios', views.ListadoUsuarios, name='ListadoUsuarios'),
+=======
+    path('contact', views.contact, name='contact'),
+>>>>>>> 56ff6f940af02f12c33d2accc9e75b93b42da5fe
 ]

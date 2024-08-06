@@ -1,0 +1,75 @@
+{% extends "./plantilla.html" %}
+{% load static %}
+{% block body %}
+<!-- ##### Breadcumb Area Start ##### -->
+<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
+    <div class="bradcumbContent">
+        <p>ECO-MUSIC</p>
+        <h2>Contacto</h2>
+    </div>
+</section>
+
+<!-- ##### Contact Info Area Start ##### -->
+<section class="contact-info-area section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="contact-info">
+                    <h3>Información de Contacto</h3>
+                    <p><strong>Dirección:</strong> Calle Ficticia 123, Ciudad, País</p>
+                    <p><strong>Teléfono:</strong> +123 456 7890</p>
+                    <p><strong>Correo Electrónico:</strong> contacto@eco-music.com</p>
+                    <p><strong>Horarios de Atención:</strong> Lunes a Viernes, 9:00 - 18:00</p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="contact-map">
+                    <h3>Encuéntranos en el Mapa</h3>
+                    <!-- Aquí puedes incluir un iframe de Google Maps si lo deseas -->
+                    <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Contact Info Area End ##### -->
+
+<!-- ##### Contact Form Area Start ##### -->
+<section class="contact-form-area section-padding-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="contact-form-content">
+                    <h3>Envíanos un Mensaje</h3>
+                    <!-- Contact Form -->
+                    <div class="contact-form">
+                        <form id="contactForm" action="" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="contactName">Nombre</label>
+                                <input type="text" class="form-control" id="contactName" name="nombre" placeholder="Introduce tu nombre">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">Correo Electrónico</label>
+                                <input type="email" class="form-control" id="contactEmail" name="email" placeholder="Introduce tu correo electrónico">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactSubject">Asunto</label>
+                                <input type="text" class="form-control" id="contactSubject" name="asunto" placeholder="Introduce el asunto del mensaje">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactMessage">Mensaje</label>
+                                <textarea class="form-control" id="contactMessage" name="mensaje" rows="4" placeholder="Introduce tu mensaje"></textarea>
+                            </div>
+                            <button type="submit" class="btn oneMusic-btn mt-30">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Contact Form Area End ##### -->
+
+<script src="{% static 'js/validation.js' %}"></script>
+{% endblock %}
