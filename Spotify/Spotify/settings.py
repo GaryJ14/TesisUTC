@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-e$r0a9#^gcfb0_a=%zy==+be)hp9m3+l+fhx-o#c&*8=s$90)0
 DEBUG = True
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'tesis-3t01.onrender.com').split(',')
 
 
 

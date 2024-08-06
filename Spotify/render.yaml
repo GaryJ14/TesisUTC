@@ -7,10 +7,10 @@ databases:
 services:
   - type: web
     plan: free
-    name: cineUTC
+    name: Tesis
     runtime: python
     buildCommand: "./build.sh"
-    startCommand: "gunicorn cineUTC.asgi:application -k uvicorn.workers.UvicornWorker"
+    startCommand: "gunicorn Tesis.asgi:application -k uvicorn.workers.UvicornWorker"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -19,7 +19,7 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: ALLOWED_HOSTS
-        value: cineutc-wt2d.onrender.com
+        value: tesis-3t01.onrender.com
 
 
 
