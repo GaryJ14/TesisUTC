@@ -10,4 +10,5 @@ urlpatterns=[
 
     path('albums', views.albums,name='albums'),
     path('login', views.login_view, name='login'),
+    path('events', views.login_view, name='events'),
 ]

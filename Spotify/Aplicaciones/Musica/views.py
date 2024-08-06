@@ -25,6 +25,9 @@ def guardarRegistro(request):
 def albums(request):
     return render(request,"Frontend/albums.html")
 
+def events(request):
+    return render(request,"Frontend/events.html")
+
 def login_view(request):
     if request.method == 'POST':
         email = request.POST['email']
