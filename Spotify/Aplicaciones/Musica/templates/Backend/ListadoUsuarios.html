@@ -16,9 +16,158 @@
                             <div class="hero-slides-content text-center">
                                 <h6 data-animation="fadeInUp" data-delay="100ms">REPRODUCTOR</h6>
                                 <h2 data-animation="fadeInUp" data-delay="300ms">ECO-MUSIC <span>ECO-MUSIC</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">INICIAR SESION <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <br>
+  <div class="container-fluid">
+    <div class="card">
+        <div class="card-title text-center">
+            <h3><b>Listado de Usuarios</b></h3>
+        </div>
+
+        <br>
+        <div class="text-end">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#usuarioModal">Agregar Usuario</button>
+        </div>
+        <br>
+        <table class="table table-bordered table-striped table-hover" id="tbl-usuarios">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Confirm Password</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for usuario in usuarios %}
+                <tr>
+                    <td>{{ usuario.id }}</td>
+                    <td>{{ usuario.nombre }}</td>
+                    <td>{{ usuario.email }}</td>
+                    <td>{{ usuario.password }}</td>
+                    <td>{{ usuario.confirmPassword }}</td>
+                    <td>
+                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#usuarioModal" onclick="editUsuario({{ usuario.id }}, '{{ usuario.nombre }}', '{{ usuario.email }}', '{{ usuario.password }}', '{{ usuario.confirmPassword }}')">Editar</button>
+                        <a href="{% url 'eliminarUsuario' usuario.id %}" onclick="return confirm('¿Estás seguro?');" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="usuarioModal" name="usuarioModal" tabindex="-1" aria-labelledby="usuarioModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="usuarioModalLabel">Nuevo Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="usuarioForm" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" id="id">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label"><b>Nombre:</b></label>
+                            <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Ingrese el nombre">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label"><b>Email:</b></label>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="Ingrese el email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label"><b>Password:</b></label>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Ingrese el password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label"><b>Confirm Password:</b></label>
+                            <input type="password" name="confirmPassword" class="form-control" id="confirmPassword" placeholder="Confirme el password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function editUsuario(id, nombre, email, password, confirmPassword) {
+            document.getElementById('id').value = id;
+            document.getElementById('nombre').value = nombre;
+            document.getElementById('email').value = email;
+            document.getElementById('password').value = password;
+            document.getElementById('confirmPassword').value = confirm_password;
+            document.getElementById('usuarioModalLabel').innerText = 'Editar Usuario';
+            document.getElementById('usuarioForm').action = "".replace('0', id);
+        }
+
+        
+        document.getElementById('usuarioModal').addEventListener('hidden.bs.modal', function () {
+            document.getElementById('id').value = '';
+            document.getElementById('nombre').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('confirmPassword').value = '';
+            document.getElementById('usuarioModalLabel').innerText = 'Nuevo Usuario';
+            document.getElementById('usuarioForm').action = "{% url 'guardarUsuario' %}";
+        });
+    </script>
+    <script src="{% static 'js/validation.js' %}"></script>
+    <script>
+        $(document).ready(function() {
+            $("#usuarioForm").validate({
+                rules: {
+                    nombre: {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 100
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    password: {
+                        required: true,
+                        minlength: 6
+                    },
+                    confirm_password: {
+                        required: true,
+                        equalTo: "#password"
+                    }
+                },
+                messages: {
+                    nombre: {
+                        required: "Por favor ingrese el nombre",
+                        minlength: "El nombre debe tener al menos 3 letras",
+                        maxlength: "Máximo 100 caracteres"
+                    },
+                    email: {
+                        required: "Por favor ingrese el email",
+                        email: "Ingrese un email válido"
+                    },
+                    password: {
+                        required: "Por favor ingrese el password",
+                        minlength: "El password debe tener al menos 6 caracteres"
+                    },
+                    confirm_password: {
+                        required: "Por favor confirme el password",
+                        equalTo: "Los passwords no coinciden"
+                    }
+                }
+            });
+        });
+    </script>
+</div>
+
+{%endblock%}

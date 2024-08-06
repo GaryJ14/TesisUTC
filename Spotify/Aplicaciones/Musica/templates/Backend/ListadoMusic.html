@@ -1,0 +1,193 @@
+{% extends "./plantilla.html" %}
+{% load static %}
+{% block body %}
+    
+    <!-- ##### Hero Area Start ##### -->
+    <section class="hero-area">
+        <div class="hero-slides owl-carousel">
+            <!-- Single Hero Slide -->
+            <div class="single-hero-slide d-flex align-items-center justify-content-center">
+                <!-- Slide Img -->
+                <div class="slide-img bg-img" style="background-image: url({% static 'img/Musica.jpg' %});"></div>
+                <!-- Slide Content -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="hero-slides-content text-center">
+                                <h6 data-animation="fadeInUp" data-delay="100ms">REPRODUCTOR</h6>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">ECO-MUSIC <span>ECO-MUSIC</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-title text-center">
+                <h3><b>Listado de Músicas</b></h3>
+            </div>
+
+            <br>
+            <div class="text-end">
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#musicaModal">Agregar Música</button>
+            </div>
+            <br>
+            <table class="table table-bordered table-striped table-hover" id="tbl-musicas">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Artista</th>
+                        <th>Álbum</th>
+                        <th>Género</th>
+                        <th>Audio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for musica in musicas %}
+                    <tr>
+                        <td>{{ musica.id }}</td>
+                        <td>{{ musica.Titulo }}</td>
+                        <td>{{ musica.Artista }}</td>
+                        <td>{{ musica.Album }}</td>
+                        <td>{{ musica.Genero }}</td>
+                        <td>
+                            {% if musica.Audio %}
+                                <audio controls>
+                                    <source src="{{ musica.Audio.url }}" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            {% else %}
+                                No disponible
+                            {% endif %}
+                        </td>
+                        <td>
+                            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#musicaModal" onclick="editMusica({{ musica.id }}, '{{ musica.Titulo }}', '{{ musica.Artista }}', '{{ musica.Album }}', '{{ musica.Genero }}')">Editar</button>
+                            <a href="" onclick="return confirm('¿Estás seguro?');" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="musicaModal" tabindex="-1" aria-labelledby="musicaModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="musicaModalLabel">Nueva Música</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="musicaForm" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" name="id" id="id">
+                            <div class="mb-3">
+                                <label for="Titulo" class="form-label"><b>Título:</b></label>
+                                <input type="text" name="Titulo" class="form-control" id="Titulo" placeholder="Ingrese el título">
+                            </div>
+                            <div class="mb-3">
+                                <label for="Artista" class="form-label"><b>Artista:</b></label>
+                                <input type="text" name="Artista" class="form-control" id="Artista" placeholder="Ingrese el artista">
+                            </div>
+                            <div class="mb-3">
+                                <label for="Album" class="form-label"><b>Álbum:</b></label>
+                                <input type="text" name="Album" class="form-control" id="Album" placeholder="Ingrese el álbum">
+                            </div>
+                            <div class="mb-3">
+                                <label for="Genero" class="form-label"><b>Género:</b></label>
+                                <input type="text" name="Genero" class="form-control" id="Genero" placeholder="Ingrese el género">
+                            </div>
+                            <div class="mb-3">
+                                <label for="Audio" class="form-label"><b>Audio:</b></label>
+                                <input type="file" name="Audio" class="form-control" id="Audio" accept="audio/*">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function editMusica(id, Titulo, Artista, Album, Genero) {
+                document.getElementById('id').value = id;
+                document.getElementById('Titulo').value = Titulo;
+                document.getElementById('Artista').value = Artista;
+                document.getElementById('Album').value = Album;
+                document.getElementById('Genero').value = Genero;
+                document.getElementById('musicaModalLabel').innerText = 'Editar Música';
+                document.getElementById('musicaForm').action = "".replace('0', id);
+            }
+
+            document.getElementById('musicaModal').addEventListener('hidden.bs.modal', function () {
+                document.getElementById('id').value = '';
+                document.getElementById('Titulo').value = '';
+                document.getElementById('Artista').value = '';
+                document.getElementById('Album').value = '';
+                document.getElementById('Genero').value = '';
+                document.getElementById('musicaModalLabel').innerText = 'Nueva Música';
+                document.getElementById('musicaForm').action = "";
+            });
+        </script>
+
+        <script>
+            $(document).ready(function() {
+                $("#musicaForm").validate({
+                    rules: {
+                        Titulo: {
+                            required: true,
+                            minlength: 3,
+                            maxlength: 200
+                        },
+                        Artista: {
+                            required: true,
+                            minlength: 3,
+                            maxlength: 200
+                        },
+                        Album: {
+                            maxlength: 200
+                        },
+                        Genero: {
+                            maxlength: 100
+                        },
+                        Audio: {
+                            required: function(element) {
+                                return document.getElementById('id').value === '';
+                            }
+                        }
+                    },
+                    messages: {
+                        Titulo: {
+                            required: "Por favor ingrese el título",
+                            minlength: "El título debe tener al menos 3 letras",
+                            maxlength: "Máximo 200 caracteres"
+                        },
+                        Artista: {
+                            required: "Por favor ingrese el artista",
+                            minlength: "El artista debe tener al menos 3 letras",
+                            maxlength: "Máximo 200 caracteres"
+                        },
+                        Album: {
+                            maxlength: "Máximo 200 caracteres"
+                        },
+                        Genero: {
+                            maxlength: "Máximo 100 caracteres"
+                        },
+                        Audio: {
+                            required: "Por favor seleccione un archivo de audio"
+                        }
+                    }
+                });
+            });
+        </script>
+    </div>
+
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
-from.models import Registro
+from.models import Registro,Music
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 
@@ -13,14 +13,6 @@ def login(request):
 
 def register(request):
     return render(request,"Frontend/register.html")
-
-def guardarRegistro(request):
-    nombre=request.POST['nombre']
-    email=request.POST['email']
-    password=request.POST['password']
-    nuevoRegistro=Registro.objects.create(nombre=nombre, email=email, password=password)
-    messages.success(request, "Usuario registrado exitosamente")
-    return redirect('/')
 
 def albums(request):
     return render(request,"Frontend/albums.html")
@@ -50,6 +42,38 @@ def login_view(request):
 
     return render(request, 'Frontend/login.html')
 
+#-----------------------USUARIOS-----------------------------------------------
 def ListadoUsuarios(request):
+    usuarios=Registro.objects.all()
+    return render(request, 'Backend/ListadoUsuarios.html',{'usuarios': usuarios})
 
-    return render(request, 'Backend/ListadoUsuarios.html')
+def guardarRegistro(request):
+    nombre=request.POST['nombre']
+    email=request.POST['email']
+    password=request.POST['password']
+    confirmPassword=request.POST['confirmPassword']
+    nuevoRegistro=Registro.objects.create(nombre=nombre, email=email, password=password, confirmPassword=confirmPassword)
+    messages.success(request, "Usuario registrado exitosamente")
+    return redirect('/')
+
+def eliminarUsuario (request,id):
+    usuarioEliminar=Registro.objects.get(id=id)
+    usuarioEliminar.delete()
+    messages.success(request, "Género eliminado Correctamente")
+    return redirect('ListadoUsuarios')
+
+def guardarUsuario(request):
+    nombre=request.POST['nombre']
+    email=request.POST['email']
+    password=request.POST['password']
+    confirmPassword=request.POST['confirmPassword']
+    nuevoRegistro=Registro.objects.create(nombre=nombre, email=email, password=password, confirmPassword=confirmPassword)
+    messages.success(request, "Usuario registrado exitosamente")
+    return redirect('ListadoUsuarios')
+
+
+#----------------------------------------------------------Music----------------------------------------------------------
+
+def ListadoMusic(request):
+    musicas = Music.objects.all()
+    return render(request, 'Backend/ListadoMusic.html', {'musicas': musicas})
